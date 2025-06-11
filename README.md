@@ -69,22 +69,7 @@ Application Details
 Language: Node.js with Express
 Listening Port: 3000 (inside the container)
 Health Check: / (returns HTTP 200)
-Sample server.js:
-js
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.json({
-    timestamp: new Date().toISOString(),
-    ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  });
-});
-
-app.listen(port, '0.0.0.0', () => {
-  console.log(`SimpleTimeService running on port ${port}`);
-});
 Dockerfile exposes port 3000 and ECS/ALB are configured to forward traffic to port 3000.
 Security & Best Practices
 No credentials are committed to this repository.
